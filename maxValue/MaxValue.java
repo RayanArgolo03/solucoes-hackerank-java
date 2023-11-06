@@ -42,29 +42,23 @@ public class MaxValue {
 
     private static int countOcurrences(String sub, String t) {
 
+        if (sub.length() == 1) {
+            return (int) t.chars().filter(c -> c == sub.charAt(0)).count();
+        }
+
         int count = 0;
         int initialIndex = 0;
         int finalIndex = sub.length();
 
-        if (sub.length() > 1) {
-
-            while (finalIndex <= t.length()) {
-                String subb = t.substring(initialIndex, finalIndex);
-                if (subb.equals(sub)) {
-                    count++;
-                }
-                initialIndex++;
-                finalIndex++;
-
+        while (finalIndex <= t.length()) {
+            String subb = t.substring(initialIndex, finalIndex);
+            if (subb.equals(sub)) {
+                count++;
             }
+            initialIndex++;
+            finalIndex++;
 
-        } else {
-            count = (int) Arrays.stream(t.split(""))
-                    .filter(str -> str.equals(String.valueOf(sub.charAt(0))))
-                    .count();
         }
-
-
         return count;
     }
 }
