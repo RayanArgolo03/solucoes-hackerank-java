@@ -12,16 +12,14 @@ public class marcsCakewalk {
     }
 
 
-    public static long marcsCakewalk(List<Integer> calorie) {
-
-        List<Integer> caloriesSorted = calorie.stream()
+     public static long marcsCakewalkMethod(List<Integer> calorie) {
+        List<Integer> calorieSorted = calorie.stream()
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
 
-        long res = 0;
-        for (int i = 0; i < caloriesSorted.size(); i++) res += (long) Math.pow(2, i) * caloriesSorted.get(i);
-
-        return res;
+        return calorieSorted.stream()
+                .map(num -> (long) Math.pow(2, calorieSorted.indexOf(num)) * num)
+                .reduce(0L, Long::sum);
     }
 
 
